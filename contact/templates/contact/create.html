@@ -1,6 +1,43 @@
 {% extends 'global/base.html' %} <!DOCTYPE html>
 
 {% block content %}
-    <h1>CREATE CONTACT</h1>
+<h1>CREATE CONTACT</h1>
+<div class="form-wrapper">
+
+  <h2>Contact</h2>
+
+  <form 
+    action="{% url 'contact:create' %}"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+
+
+
+    {% comment %} <table>
+        {{form}}
+    </table> {% endcomment %}
+
+
+
+     <div class="form-content">
+        {% for fild in forms %}
+      <div class="form-group">
+        <label for="{{fild.id_for_label}}">{{fild.label}}</label>
+        {{fild}}
+        {{fild.errors}}
+        
+      </div>
+      {% endfor %}
+    </div>
+    <div class="form-content">
+      <div class="form-group">
+        <button class="btn" type="submit">Send</button>
+      </div>
+    </div>
+
+  </form>
+</div>
 {% endblock content %}
 
